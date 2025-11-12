@@ -1,27 +1,33 @@
+import os
 from groq import Groq
+from dotenv import load_dotenv
 
-client = None  # Cliente global, se inicializa desde main
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), "..", ".env"))
 
-def init_client(api_key: str):
-    """Inicializa el cliente Groq con la API Key"""
-    global client
-    if not api_key:
-        raise ValueError("No se proporcionó la API Key para Groq")
-    client = Groq(api_key=api_key)
+api_key = os.getenv("GROQ_API_KEY")
+if not api_key:
+    raise ValueError("No se encontró GROQ_API_KEY en el .env")
 
-def groq_text(prompt: str) -> str:
-    """Ejemplo de función que usa el cliente"""
-    if client is None:
-        raise ValueError("Cliente Groq no inicializado")
-    completion = client.chat.completions.create(
-        model="mixtral-8x7b-32768",
-        messages=[{"role": "user", "content": prompt}],
-        temperature=0.7
-    )
-    return completion.choices[0].message["content"]
+client = Groq(api_key=api_key)
 
-def groq_transcribe(audio_path: str) -> str:
-    """Ejemplo de transcripción de audio"""
-    if client is None:
-        raise ValueError("Cliente Groq no inicializado")
-    return client.audio.transcriptions.create(file=audio_path) 
+def groq_text_response(prompt: str) -> str:
+    try:
+        completion = client.chat.completions.create(
+            model="llama-3.1-8b-instant",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.7
+        )
+        return completion.choices[0].message.content
+    except Exception as e:
+        return f"Error IA: {e}"
+
+def groq_transcribe(file_path: str) -> str:
+    try:
+        with open(file_path, "rb") as f:
+            transcription = client.audio.transcriptions.create(
+                model="whisper-large-v3",
+                file=f
+            )
+        return transcription.text
+    except Exception as e:
+        return f"Error al transcribir: {e}"

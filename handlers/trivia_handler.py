@@ -1,49 +1,45 @@
-from telebot.types import Message
-from services.trivia_service import obtener_pregunta, verificar_respuesta
+import json
+import random
+from telebot import TeleBot, types
 
-# Estado simple en memoria
-usuario_estado = {}
-
-def register_trivia(bot):
-
+def register_trivia(bot: TeleBot):
     @bot.message_handler(commands=["trivia"])
-    def start_trivia(message: Message):
-        user_id = message.from_user.id
-        pregunta = obtener_pregunta(user_id)  # Pasamos el user_id
-        usuario_estado[user_id] = pregunta
-        bot.send_message(user_id, "¡Arranca la trivia! 🎮")
-        bot.send_message(user_id, "Pregunta: " + pregunta["pregunta"])
-    
-    @bot.message_handler(func=lambda m: True, content_types=["text"])
-    def handle_text(message: Message):
-        user_id = message.from_user.id
-        texto = message.text.strip().lower()
+    def start_trivia(message):
+        try:
+            with open("data/preguntas.json", "r", encoding="utf-8") as f:
+                preguntas = json.load(f)
 
-        if user_id in usuario_estado:
-            pregunta_obj = usuario_estado[user_id]
+            pregunta = random.choice(preguntas)
+            texto_pregunta = pregunta["pregunta"]
 
-            if verificar_respuesta(pregunta_obj, texto):
-                bot.send_message(user_id, "✅ ¡Correcto! Vamos con otra...")
-            else:
-                bot.send_message(user_id, f"❌ Incorrecto. La respuesta era: {pregunta_obj['respuesta']}")
+            # Guardamos la respuesta correcta en user_data
+            bot.user_data = getattr(bot, "user_data", {})
+            bot.user_data[message.chat.id] = pregunta["respuesta"].lower()
 
-            # Nueva pregunta
-            nueva = obtener_pregunta(user_id)
-            usuario_estado[user_id] = nueva
-            bot.send_message(user_id, "Pregunta: " + nueva["pregunta"])
+            bot.send_message(message.chat.id, f"🧠 Trivia:\n\n{texto_pregunta}")
+            bot.send_message(message.chat.id, "✍️ Escribí tu respuesta:")
+
+            bot.register_next_step_handler(message, verificar_respuesta)
+        except Exception as e:
+            bot.send_message(message.chat.id, f"❌ Error al cargar la trivia: {e}")
+
+    def verificar_respuesta(message):
+        respuesta_usuario = message.text.lower().strip()
+        correcta = bot.user_data.get(message.chat.id)
+
+        if not correcta:
+            bot.send_message(message.chat.id, "⚠️ No hay una trivia activa. Escribí /trivia para comenzar.")
             return
 
-        # Mensaje que no es parte de la trivia
-        bot.send_message(user_id, "Soy un bot de trivia 🤖. Escribí /trivia para comenzar.")
+        if respuesta_usuario == correcta:
+            bot.send_message(message.chat.id, "🎉 ¡Correcto! ✅")
+        else:
+            bot.send_message(message.chat.id, f"❌ Incorrecto. La respuesta correcta era: {correcta.capitalize()}")
 
+        # Limpia la trivia actual
+        bot.user_data.pop(message.chat.id, None)
 
-        from services.trivia_service import obtener_pregunta, verificar_respuesta
+        # Ofrece jugar otra
+        bot.send_message(message.chat.id, "¿Querés jugar otra? Escribí /trivia para continuar 🎯") 
 
-def register_trivia(bot):
-    """
-    Aquí podrías agregar handlers extra relacionados con la trivia
-    si querés separar de text_handler.
-    Por ahora solo devolvemos la función para importar desde main.py
-    """
-    pass 
 
