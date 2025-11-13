@@ -1,35 +1,47 @@
+import os
 from telebot.types import Message
 from services.audio_service import transcribir_audio
 from services.groq_service import groq_text_response
-import os
+from handlers.trivia_handler import iniciar_trivia
 
 def register_audio(bot):
-
     @bot.message_handler(content_types=["voice"])
-    def handle_voice(message: Message):
+    def handle_audio(message: Message):
         try:
-            # Descargar el audio a un archivo temporal
+            # Descargar archivo
             file_info = bot.get_file(message.voice.file_id)
             downloaded_file = bot.download_file(file_info.file_path)
-            temp_path = os.path.join("temp.ogg")  # ruta temporal
-            with open(temp_path, "wb") as f:
+
+            os.makedirs("temp", exist_ok=True)
+            file_path = f"temp/audio_{message.from_user.id}.ogg"
+
+            with open(file_path, "wb") as f:
                 f.write(downloaded_file)
 
-            # Transcribir audio usando la ruta del archivo
-            texto = transcribir_audio(temp_path)
+            # 1) Transcribir (no se lo mostramos al usuario)
+            texto = transcribir_audio(file_path).strip().lower()
 
-            # Mandar el texto a la IA y obtener respuesta
-            respuesta = groq_text_response(
-                f"Eres Triviabot, un bot de trivia. "
-                f"El usuario dijo: '{texto}'. "
-                f"Responde solo con información relacionada con trivia o tu rol de bot de trivia."
-            )
+            # Si no se pudo transcribir nada
+            if not texto:
+                bot.send_message(message.chat.id, "No entendí el audio 🤔 ¿Me repetís?")
+                os.remove(file_path)
+                return
 
-            # Enviar la respuesta de la IA directamente
+            # 2) Detectar si pidió jugar a la trivia
+            if "trivia" in texto or "jugar" in texto:
+                iniciar_trivia(bot, message)
+                os.remove(file_path)
+                return
+
+            # 3) Pasar texto a la IA con historial
+            respuesta = groq_text_response(message.from_user.id, texto)
+
+            # 4) Responder normalmente
             bot.send_message(message.chat.id, respuesta)
 
-            # Eliminar archivo temporal
-            os.remove(temp_path)
+            # 5) Borrar archivo temporal
+            os.remove(file_path)
 
         except Exception as e:
-            bot.send_message(message.chat.id, f"⚠️ Error al procesar tu audio: {e}") 
+            bot.send_message(message.chat.id, f"⚠️ Error al procesar tu audio: {e}")
+
