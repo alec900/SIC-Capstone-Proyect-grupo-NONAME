@@ -154,6 +154,7 @@ Evalúa respuestas
 Lleva registro temporal por usuario
 
 📚 Banco de preguntas
+
 Todas las preguntas se encuentran en:
 
 /data/preguntas.json
