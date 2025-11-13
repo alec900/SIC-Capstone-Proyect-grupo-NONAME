@@ -1,6 +1,12 @@
 from telebot.types import Message
 from services.groq_service import groq_text_response
 
+
+usuarios_saludados = set()
+
+# Lista de palabras que se consideran saludo
+SALUDOS = ["hola", "holaa", "buenas", "hey", "qué tal", "buen día", "buenas tardes", "buenas noches"]
+
 def register_text(bot):
 
     @bot.message_handler(commands=["start"])
@@ -14,15 +20,28 @@ def register_text(bot):
 
     @bot.message_handler(func=lambda message: not message.text.startswith("/"), content_types=["text"])
     def handle_text(message: Message):
-        texto = message.text.lower()
+        texto = message.text.lower().strip()
+        user_id = message.from_user.id
 
-        # Si el mensaje no tiene relación con trivia
-        if "trivia" not in texto:
-            respuesta = groq_text_response(
-                f"Sos Triviabot, un bot simpático de trivia. "
-                f"Si alguien te habla de algo que no sea trivia, respondé amablemente que solo sabés de trivia, "
-                f"pero con humor o simpatía. El usuario dijo: '{texto}'."
-            )
-            bot.send_message(message.chat.id, respuesta)
-        else:
-            bot.send_message(message.chat.id, "¿Querés jugar una trivia? Escribí /trivia para comenzar 🎯") 
+        
+        if any(saludo in texto for saludo in SALUDOS):
+            if user_id not in usuarios_saludados:
+                usuarios_saludados.add(user_id)
+                bot.send_message(message.chat.id, "¡Hola! 👋 ¿Cómo estás?")
+                return
+            elif texto in SALUDOS:
+                bot.send_message(message.chat.id, "¡Hola de nuevo! 😄")
+                return
+
+        
+        if "trivia" in texto:
+            bot.send_message(message.chat.id, "¿Querés jugar una trivia? Escribí /trivia para comenzar 🎯")
+            return
+
+        
+        respuesta = groq_text_response(
+            f"Sos Triviabot, un bot simpático de trivia. "
+            f"Si alguien te habla de algo que no sea trivia, respondé amablemente que solo sabés de trivia, "
+            f"pero con humor o simpatía,. El usuario dijo: '{texto}'."
+        )
+        bot.send_message(message.chat.id, respuesta)

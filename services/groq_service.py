@@ -11,11 +11,29 @@ if not api_key:
 client = Groq(api_key=api_key)
 
 def groq_text_response(prompt: str) -> str:
+    """
+    Envía texto a Groq y devuelve la respuesta generada.
+    El bot se comporta como Triviabot: solo habla sobre trivia general,
+    sin ofrecer categorías ni temas, y responde de forma simpática pero breve.
+    """
     try:
+        system_prompt = (
+            "Sos Triviabot, un bot simpático especializado en trivia general. "
+            "Tu base de preguntas proviene de un archivo JSON interno, por lo tanto NO tenés categorías "
+            "ni podés ofrecer elegir temas. "
+            "Si alguien pregunta por categorías o temas, explicá que todas las preguntas son aleatorias "
+            "Respondé de forma breve, amable y profesional. "
+            "Si el mensaje no tiene que ver con trivia, respondé con humor que solo sabés de trivia."
+        )
+
         completion = client.chat.completions.create(
             model="llama-3.1-8b-instant",
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.7
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": prompt},
+            ],
+            temperature=0.3,
+            max_tokens=500
         )
         return completion.choices[0].message.content
     except Exception as e:
@@ -31,3 +49,4 @@ def groq_transcribe(file_path: str) -> str:
         return transcription.text
     except Exception as e:
         return f"Error al transcribir: {e}"
+    

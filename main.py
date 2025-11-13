@@ -4,7 +4,7 @@ from telebot import TeleBot
 from handlers.text_handler import register_text
 from handlers.audio_handler import register_audio
 from handlers.trivia_handler import register_trivia
-
+from handlers.trivia_handler import iniciar_trivia
 
 from dotenv import load_dotenv
 from pathlib import Path

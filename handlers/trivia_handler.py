@@ -42,4 +42,23 @@ def register_trivia(bot: TeleBot):
         # Ofrece jugar otra
         bot.send_message(message.chat.id, "¿Querés jugar otra? Escribí /trivia para continuar 🎯") 
 
+def iniciar_trivia(bot, message):
+    """
+    Permite iniciar una trivia desde otro módulo (como el de audio).
+    """
+    from services.trivia_service import obtener_pregunta
+
+    pregunta = obtener_pregunta(message.from_user.id)
+    bot.send_message(
+        message.chat.id,
+        f"🧠 {pregunta['pregunta']}\n"
+        "Escribí tu respuesta en el chat 👇"
+    )
+
+    # Guardamos la pregunta actual en el user_data (si usás uno)
+    if not hasattr(bot, "user_data"):
+        bot.user_data = {}
+    bot.user_data[message.from_user.id] = pregunta 
+    
+
 
