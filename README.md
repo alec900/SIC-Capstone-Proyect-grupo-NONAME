@@ -89,7 +89,9 @@ Creamos un **bot inteligente de Telegram** que combina:
 
 ---
 
-## 🧩 **Estructura del proyecto**
+---
+
+# 🧩 **Estructura del proyecto**
 
 handlers/
 audio_handler.py # Procesa audios y los transcribe
@@ -102,19 +104,12 @@ data/
 preguntas.json # Banco de preguntas
 main.py # Ejecución del bot
 
----
-
-## 🚀 **Cómo usarlo**
-
-### 1️⃣ Cloná el repositorio
-
-```bash
-git clone https://github.com/alec900/SIC-Capstone-Proyect-grupo-NONAME.git
-cd SIC-Capstone-Proyect-grupo-NONAME
+yaml
+Copiar código
 
 ---
 
-## 🚀 **Cómo usarlo**
+# 🚀 **Cómo usarlo**
 
 ### 1️⃣ Cloná el repositorio
 
@@ -151,46 +146,27 @@ Copiar código
   "pregunta": "¿Cuál es la capital de Francia?",
   "respuesta": "paris"
 }
+Solo agregá más objetos en el arreglo y el bot los usará automáticamente.
+
 🏛️ Aplicaciones prácticas
 TriviaBot puede integrarse en:
-
 Talleres educativos
-
 Programas de formación
-
 ONG orientadas a jóvenes
-
 Actividades de gamificación
-
 Evaluaciones rápidas
-
 Equipos de trabajo
-
 Eventos o concursos
-
 Permite aprender de forma divertida y medir conocimientos sin estrés.
 
 📌 Roadmap
-Modo multijugador
-
-Ranking global
-
-Logros y niveles
-
-Panel de administración
-
-Trivia visual con imágenes
-
-FAQ / Hint System
-
-Base de datos + dashboard estadístico
-
-Retos diarios
-
-<div align="center">
-👥 Autores
-Grupo NONAME – Samsung Innovation Campus Capstone Project
-💬 Si querés colaborar con el proyecto, ¡tus PRs son bienvenidos!
+-Modo multijugador
+-Ranking global
+-Logros y niveles
+-Panel de administración
+-Trivia visual con imágenes
+-Modo “desafío diario”
+-Base de datos + dashboard estadístico
 
 
 👥 Autores
