@@ -91,6 +91,107 @@ Creamos un **bot inteligente de Telegram** que combina:
 
 ## 🧩 **Estructura del proyecto**
 
+handlers/
+audio_handler.py # Procesa audios y los transcribe
+text_handler.py # Maneja /start y mensajes de texto
+trivia_handler.py # Lógica del juego de trivia
+services/
+audio_service.py # Servicio de transcripción
+groq_service.py # IA para respuestas
+data/
+preguntas.json # Banco de preguntas
+main.py # Ejecución del bot
+
+---
+
+## 🚀 **Cómo usarlo**
+
+### 1️⃣ Cloná el repositorio
+
+```bash
+git clone https://github.com/alec900/SIC-Capstone-Proyect-grupo-NONAME.git
+cd SIC-Capstone-Proyect-grupo-NONAME
+
+---
+
+## 🚀 **Cómo usarlo**
+
+### 1️⃣ Cloná el repositorio
+
+```bash
+git clone https://github.com/alec900/SIC-Capstone-Proyect-grupo-NONAME.git
+cd SIC-Capstone-Proyect-grupo-NONAME
+2️⃣ Instalá las dependencias
+bash
+Copiar código
+pip install -r requirements.txt
+3️⃣ Configurá tus variables de entorno
+Crear archivo .env:
+
+ini
+Copiar código
+BOT_TOKEN=TU_TOKEN_DE_TELEGRAM
+GROQ_API_KEY=TU_API_KEY
+4️⃣ Ejecutá el bot
+bash
+Copiar código
+python main.py
+Listo. Ya podés usar TriviaBot desde Telegram. 🎉
+
+📁 Banco de preguntas
+Puedes editar fácilmente el archivo:
+
+/data/preguntas.json
+
+Formato:
+
+json
+Copiar código
+{
+  "pregunta": "¿Cuál es la capital de Francia?",
+  "respuesta": "paris"
+}
+🏛️ Aplicaciones prácticas
+TriviaBot puede integrarse en:
+
+Talleres educativos
+
+Programas de formación
+
+ONG orientadas a jóvenes
+
+Actividades de gamificación
+
+Evaluaciones rápidas
+
+Equipos de trabajo
+
+Eventos o concursos
+
+Permite aprender de forma divertida y medir conocimientos sin estrés.
+
+📌 Roadmap
+Modo multijugador
+
+Ranking global
+
+Logros y niveles
+
+Panel de administración
+
+Trivia visual con imágenes
+
+FAQ / Hint System
+
+Base de datos + dashboard estadístico
+
+Retos diarios
+
+<div align="center">
+👥 Autores
+Grupo NONAME – Samsung Innovation Campus Capstone Project
+💬 Si querés colaborar con el proyecto, ¡tus PRs son bienvenidos!
+
 
 👥 Autores
 
