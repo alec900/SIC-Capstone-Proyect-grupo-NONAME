@@ -55,9 +55,9 @@ El usuario responde por texto.
 
 El bot evalúa:
 
-Si es correcta → felicita.
+Si es correcta: felicita.
 
-Si es incorrecta → muestra la respuesta correcta.
+Si es incorrecta: muestra la respuesta correcta.
 
 Ofrece jugar otra.
 
@@ -95,11 +95,8 @@ Puede adaptarse para procesos de capacitación interna, onboarding, formación c
 📌 Requisitos previos
 
 Python 3.9+
-
 Token de Bot de Telegram
-
 Librerías de IA (Groq u otra LLM)
-
 Dependencias de transcripción (según audio_service)
 
 📦 Instalación
@@ -140,3 +137,40 @@ main.py
 Ejecutar el bot
 
 python main.py
+
+📁 Handlers principales
+-audio_handler.py
+Recibe audios → los transcribe.
+
+-text_handler.py
+Maneja /start
+Atiende mensajes que no sean trivia
+Usa IA para respuestas simpáticas
+
+-trivia_handler.py
+Maneja /trivia
+Selecciona preguntas del JSON
+Evalúa respuestas
+Lleva registro temporal por usuario
+
+📚 Banco de preguntas
+Todas las preguntas se encuentran en:
+
+/data/preguntas.json
+
+Formato:
+
+{
+  "pregunta": "¿Cuál es la capital de Francia?",
+  "respuesta": "paris"
+}
+
+
+Podés agregar, borrar o modificar preguntas desde ahí.
+
+👥 Autores
+
+Proyecto desarrollado por:
+-Alexis Fabian Nuñez
+-Florencia Ferreyra Cadario
+-Candela Magali Gallardo
