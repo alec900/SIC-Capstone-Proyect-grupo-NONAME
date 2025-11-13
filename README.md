@@ -8,14 +8,20 @@ TriviaBot transforma el clásico juego de preguntas y respuestas en una experien
 Su objetivo es combinar diversión, aprendizaje, análisis emocional y accesibilidad multimedia, incentivando:
 
 -La curiosidad
+
 -El pensamiento crítico
+
 -La memoria
+
 -La competencia sana
+
 -El aprendizaje autónomo
+
 
 Es ideal tanto para usuarios casuales como para instituciones que quieran fomentar dinámicas educativas o evaluar conocimientos de forma innovadora.
 
 Características principales
+
 -Sistema de Trivia
 Preguntas por categorías (Ciencia, Historia, Geografía, Cultura, Deportes, etc.).
 Niveles de dificultad escalables.
