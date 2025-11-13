@@ -1,179 +1,96 @@
-🎮 TriviaBot – Bot Inteligente de Trivia para Telegram
+<div align="center">
 
-Entretenimiento, aprendizaje y análisis inteligente en un solo bot.
+# 🎮 **TriviaBot**
+### *El bot de trivia más inteligente, divertido y humano de Telegram*
 
-🧠 ¿Qué es TriviaBot?
+🚀 Aprendé, competí y divertite con un bot que combina  
+**preguntas dinámicas + IA + análisis emocional + multimedia.**
 
-TriviaBot transforma el clásico juego de preguntas y respuestas en una experiencia interactiva impulsada por Inteligencia Artificial.
-Su objetivo es combinar diversión, aprendizaje, análisis emocional y accesibilidad multimedia, incentivando:
+</div>
 
--La curiosidad
+---
 
--El pensamiento crítico
+## ✨ **¿Qué es TriviaBot?**
 
--La memoria
+**TriviaBot** transforma el clásico juego de preguntas y respuestas en una  
+**experiencia interactiva** impulsada por *Inteligencia Artificial*.  
+Aprende del usuario, adapta la dificultad, transcribe audios y hasta puede interpretar imágenes.
 
--La competencia sana
+Una herramienta ideal para:
+- Aprender jugando  
+- Entrenar la memoria  
+- Competir con amigos  
+- Dinámicas educativas  
+- Evaluaciones rápidas  
+- ONG, escuelas y empresas que busquen innovación  
 
--El aprendizaje autónomo
+---
 
+## 💡 **Nuestra propuesta**
 
-Es ideal tanto para usuarios casuales como para instituciones que quieran fomentar dinámicas educativas o evaluar conocimientos de forma innovadora.
+### ❗ Problema  
+Las personas buscan formas **divertidas, rápidas y accesibles** de aprender, practicar conocimientos y entrenar habilidades cognitivas.  
+Las herramientas tradicionales suelen ser rígidas, aburridas o poco interactivas.
 
-Características principales
+### ✅ Solución  
+Creamos un **bot inteligente de Telegram** que combina:
+- Preguntas dinámicas  
+- Retroalimentación instantánea  
+- Análisis emocional con IA  
+- Transcripción de audio  
+- (Futuro) análisis de imágenes  
+- Adaptación del nivel según desempeño  
 
--Sistema de Trivia
-Preguntas por categorías (Ciencia, Historia, Geografía, Cultura, Deportes, etc.).
-Niveles de dificultad escalables.
-Puntuación automática.
-Rankings y progreso.
-Selección aleatoria o adaptativa según desempeño.
+🎯 Todo desde un chat de Telegram, sin instalar nada extra.
 
--Inteligencia Artificial
-Respuestas empáticas y simpáticas cuando se dialoga fuera del contexto de trivia.
-Análisis de emociones a partir del texto.
-Recomendación de categorías según intereses del usuario.
-Ajuste dinámico de la dificultad (“aprender del usuario”).
+---
 
--Procesamiento Multimedia
-TriviaBot interpreta diferentes tipos de entrada:
-Audio: transcripción automática (speech-to-text).
-Imágenes (futuro): para “trivia visual”.
-Texto:modo tradicional de preguntas y respuestas.
+## 🧠 **Características principales**
 
--Estadísticas & seguimiento
-Registro de aciertos.
-Historial de desempeño.
-Progreso por categoría.
-Niveles de usuario.
+### 🎯 Modo Trivia
+- Preguntas por categorías: *Ciencia, Historia, Cine, Cultura, Geografía, Deportes…*  
+- Dificultad adaptable  
+- Evaluación automática  
+- Puntuación y rachas  
+- Rankings y progreso (roadmap)
 
-🧩 ¿Cómo funciona?
+---
 
-El usuario escribe /start → el bot se presenta.
+### 🤖 Inteligencia Artificial
+- Respuestas empáticas y humorísticas  
+- Reconocimiento de tono emocional  
+- Recomendación de categorías  
+- Personalidad propia (simpática y centrada en trivia)
 
-El usuario envía /trivia → inicia una pregunta.
+---
 
-TriviaBot elige una pregunta aleatoria del banco (preguntas.json).
+### 🎤🎨 Procesamiento Multimedia
+- **Audio → Texto (Speech-to-Text)**  
+- **(Próximo)** Trivia visual a partir de imágenes  
+- Soporte para texto, audio e imágenes
 
-Guarda internamente la respuesta correcta.
+---
 
-El usuario responde por texto.
+### 📊 Estadísticas
+- Registro de aciertos  
+- Historial básico  
+- Progreso por categoría (en desarrollo)
 
-El bot evalúa:
+---
 
-Si es correcta: felicita.
+## 🛠️ **Tecnologías utilizadas**
 
-Si es incorrecta: muestra la respuesta correcta.
+- **Python 3**
+- **pyTelegramBotAPI**
+- **Groq LLM** para IA conversacional
+- **Transcripción de audio**
+- JSON para el banco de preguntas
+- Handlers modulares para escalabilidad
 
-Ofrece jugar otra.
+---
 
-También puede recibir audios y transcribirlos automáticamente.
+## 🧩 **Estructura del proyecto**
 
-🧠 Nuestra solución 
-
-Las personas buscan una forma divertida, accesible e interactiva de aprender, entrenar la memoria y desafiarse con conocimientos de cultura general.
-Además, muchas herramientas educativas son estáticas, rígidas y poco personalizadas.
-
-✅ Solución
-
-Creamos un bot inteligente de Telegram que combina:
--Preguntas dinámicas
--IA que detecta tono y genera respuestas simpáticas
--Adaptación del nivel de dificultad
--Interacción por texto, audio e imagen
--Experiencia accesible, rápida y gratuita
-
-Incluye:
--Formulación de preguntas en múltiples categorías
--Evaluación automática
--Retroalimentación inmediata
--Detección emocional
--Personalización por desempeño
--Transcripción de audios
--(En desarrollo) Trivia visual desde imágenes
-
-🏛️ Aplicaciones en gestión, educación y organizaciones
-
-TriviaBot no es solo un juego:
-Puede adaptarse para procesos de capacitación interna, onboarding, formación continua y evaluación rápida.
-
-🛠️ Instalación y requisitos
-📌 Requisitos previos
-
-Python 3.9+
-Token de Bot de Telegram
-Librerías de IA (Groq u otra LLM)
-Dependencias de transcripción (según audio_service)
-
-📦 Instalación
-
-Clonar el repositorio
-
-git clone https://github.com/alec900/SIC-Capstone-Proyect-grupo-NONAME.git
-cd SIC-Capstone-Proyect-grupo-NONAME
-
-
-Instalar dependencias
-
-pip install -r requirements.txt
-
-
-Configurar variables de entorno
-
-Crear un .env:
-
-BOT_TOKEN=TU_TOKEN_DE_TELEGRAM
-GROQ_API_KEY=TU_API_KEY
-
-
-Estructura del proyecto
-
-handlers/
-    audio_handler.py
-    text_handler.py
-    trivia_handler.py
-services/
-    audio_service.py
-    groq_service.py
-data/
-    preguntas.json
-main.py
-
-
-Ejecutar el bot
-
-python main.py
-
-📁 Handlers principales
--audio_handler.py
-Recibe audios → los transcribe.
-
--text_handler.py
-Maneja /start
-Atiende mensajes que no sean trivia
-Usa IA para respuestas simpáticas
-
--trivia_handler.py
-Maneja /trivia
-Selecciona preguntas del JSON
-Evalúa respuestas
-Lleva registro temporal por usuario
-
-📚 Banco de preguntas
-
-Todas las preguntas se encuentran en:
-
-/data/preguntas.json
-
-Formato:
-
-{
-  "pregunta": "¿Cuál es la capital de Francia?",
-  "respuesta": "paris"
-}
-
-
-Podés agregar, borrar o modificar preguntas desde ahí.
 
 👥 Autores
 
