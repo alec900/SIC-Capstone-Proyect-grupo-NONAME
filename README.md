@@ -89,7 +89,6 @@ Creamos un **bot inteligente de Telegram** que combina:
 
 ---
 
----
 
 # 🧩 **Estructura del proyecto**
 
