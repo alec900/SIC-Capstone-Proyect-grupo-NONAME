@@ -103,6 +103,34 @@ data/
 preguntas.json # Banco de preguntas
 main.py # Ejecución del bot
 
+📌 Funcionamiento resumido
+
+Usuario envía /trivia
+Bot pregunta por el estado de ánimo
+Usuario elige un emoji → se responde con un mensaje adaptado
+Se genera una pregunta aleatoria
+Bot espera la respuesta (WAITING_ANSWER)
+Bot evalúa:
+Si es correcta → felicita 🎉
+Si es incorrecta → da la respuesta ❌
+Se ofrece otra pregunta o finalizar
+
+🐞 Errores comunes solucionados
+Estado WAITING_ANSWER perdido → solucionado con FSM
+Mensajes que se iban al fallback → orden correcto de handlers
+Respuesta atrapada por handlers globales → ajustado el router
+
+📌 Próximas mejoras (roadmap)
+
+Sistema de puntuación
+
+Ranking global
+
+Temáticas de trivia configurables
+
+Más emociones en el check-in
+
+
 yaml
 Copiar código
 
