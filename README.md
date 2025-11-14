@@ -19,7 +19,6 @@ Aprende del usuario, adapta la dificultad, transcribe audios y hasta puede inter
 Una herramienta ideal para:
 - Aprender jugando  
 - Entrenar la memoria  
-- Competir con amigos  
 - Dinámicas educativas  
 - Evaluaciones rápidas  
 - ONG, escuelas y empresas que busquen innovación  
@@ -37,9 +36,10 @@ Creamos un **bot inteligente de Telegram** que combina:
 - Preguntas dinámicas  
 - Retroalimentación instantánea  
 - Análisis emocional con IA  
-- Transcripción de audio  
+- Transcripción de audio
+- Adaptación del nivel según el animo descrito por el analisis emocional
 - (Futuro) análisis de imágenes  
-- Adaptación del nivel según desempeño  
+ 
 
 🎯 Todo desde un chat de Telegram, sin instalar nada extra.
 
@@ -48,18 +48,17 @@ Creamos un **bot inteligente de Telegram** que combina:
 ## 🧠 **Características principales**
 
 ### 🎯 Modo Trivia
-- Preguntas por categorías: *Ciencia, Historia, Cine, Cultura, Geografía, Deportes…*  
+- Preguntas segun el estado del animo
 - Dificultad adaptable  
 - Evaluación automática  
-- Puntuación y rachas  
-- Rankings y progreso (roadmap)
+- Puntuación y rachas  (en proceso)
+- Rankings y progreso (ren proceso)
 
 ---
 
 ### 🤖 Inteligencia Artificial
 - Respuestas empáticas y humorísticas  
-- Reconocimiento de tono emocional  
-- Recomendación de categorías  
+- Reconocimiento de tono emocional   
 - Personalidad propia (simpática y centrada en trivia)
 
 ---
@@ -67,11 +66,11 @@ Creamos un **bot inteligente de Telegram** que combina:
 ### 🎤🎨 Procesamiento Multimedia
 - **Audio → Texto (Speech-to-Text)**  
 - **(Próximo)** Trivia visual a partir de imágenes  
-- Soporte para texto, audio e imágenes
+- Soporte para texto, audio.
 
 ---
 
-### 📊 Estadísticas
+### 📊 Estadísticas (en proceso)
 - Registro de aciertos  
 - Historial básico  
 - Progreso por categoría (en desarrollo)
@@ -86,6 +85,7 @@ Creamos un **bot inteligente de Telegram** que combina:
 - **Transcripción de audio**
 - JSON para el banco de preguntas
 - Handlers modulares para escalabilidad
+- dotenv
 
 ---
 
@@ -147,6 +147,18 @@ Copiar código
 }
 Solo agregá más objetos en el arreglo y el bot los usará automáticamente.
 
+RECOMENDACIONES IMPORTATES PARA LA UTILIZACION DEL BOT!
+el bot inicial al escribirle hola
+para iniciar la trivia se debe utilizar el comando /trivia
+la dificultad se selecciona segun el estado de animo. si se esta feliz la dificultad es la maxima
+si estas cansado la dificultad es minima
+
+RECOMENDACIONES PARA EL CHAT DE VOZ
+el chat de para iniciar el juego lo inicia con las siguientes palabras: quiero jugar
+si el bot no escucha esa palabra la trivia no inicia.
+
+
+
 🏛️ Aplicaciones prácticas
 TriviaBot puede integrarse en:
 Talleres educativos
@@ -166,7 +178,6 @@ Permite aprender de forma divertida y medir conocimientos sin estrés.
 -Trivia visual con imágenes
 -Modo “desafío diario”
 -Base de datos + dashboard estadístico
-
 
 👥 Autores
 
